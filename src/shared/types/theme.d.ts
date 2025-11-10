@@ -10,8 +10,7 @@ export type ColorKey =
   | 'errorText'
   | 'white'
   | 'black'
-  | 'hoverOverlay'
-  | 'buttonActive';
+  | 'hoverOverlay';
 
 export type ShadowKey = 'default';
 

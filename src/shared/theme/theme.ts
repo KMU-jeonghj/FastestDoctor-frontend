@@ -1,5 +1,5 @@
 import { rgba } from 'polished';
-import type { Theme, ThemeName } from '../types/theme';
+import type { Theme } from '../types/theme';
 
 const createButtonScheme = (color: Theme['color']): Theme['buttonScheme'] => ({
   primary: {
@@ -33,13 +33,12 @@ const createButtonScheme = (color: Theme['color']): Theme['buttonScheme'] => ({
 const lightColor: Theme['color'] = {
   black: '#111111',
   white: '#FFFFFF',
-  primary: '#7762FF',
-  secondary: '#FFFFFF',
-  background: '#F1EEFF',
-  gradationGreen: '#F3F4FF',
-  border: '#C7C7C7',
-  secondText: '#797979',
-  buttonActive: '#676767',
+  primary: '#007DCA',
+  secondary: '#E1EFFA',
+  background: '#F9FCFF',
+  gradationGreen: '#00A799',
+  border: '#D8DBDE',
+  secondText: '#7F7F7F',
   errorText: '#CC0000',
   hoverOverlay: '#000000',
 };
