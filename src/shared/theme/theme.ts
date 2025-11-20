@@ -1,38 +1,6 @@
 import { rgba } from 'polished';
 import type { Theme } from '../types/theme';
 
-const createButtonScheme = (color: Theme['color']): Theme['buttonScheme'] => ({
-  primary: {
-    color: color.white,
-    backgroundColor: color.primary,
-    gradation: `linear-gradient(90deg, ${lightColor.primary} 0%, ${lightColor.gradationGreen} 100%)`,
-  },
-  secondary: {
-    color: color.black,
-    backgroundColor: color.white,
-    boxShadow: `0px 0px 4px ${rgba(lightColor.black, 0.25)}`,
-  },
-  option: {
-    color: color.black,
-    backgroundColor: color.white,
-    border: color.border,
-  },
-  optionActive: {
-    color: color.white,
-    backgroundColor: color.primary,
-    gradation: `linear-gradient(90deg, ${lightColor.primary} 0%, ${lightColor.gradationGreen} 100%)`,
-  },
-  prev: {
-    color: color.secondText,
-    backgroundColor: 'transparent',
-  },
-  answer: {
-    color: color.black,
-    backgroundColor: color.background,
-    boxShadow: `0px 0px 4px ${rgba(lightColor.black, 0.25)}`,
-  },
-});
-
 const lightColor: Theme['color'] = {
   black: '#111111',
   white: '#FFFFFF',
@@ -46,15 +14,51 @@ const lightColor: Theme['color'] = {
   hoverOverlay: '#000000',
 };
 
+const gradation = {
+  primary: `linear-gradient(90deg, ${lightColor.primary} 0%, ${lightColor.gradationGreen} 100%)`,
+};
+
+const shadow = {
+  default: `0px 0px 4px ${rgba(lightColor.black, 0.25)}`,
+};
+
+const createButtonScheme = (color: Theme['color']): Theme['buttonScheme'] => ({
+  primary: {
+    color: color.white,
+    backgroundColor: color.primary,
+    gradation: gradation.primary,
+  },
+  secondary: {
+    color: color.black,
+    backgroundColor: color.white,
+    boxShadow: shadow.default,
+  },
+  option: {
+    color: color.black,
+    backgroundColor: color.white,
+    border: color.border,
+  },
+  optionActive: {
+    color: color.white,
+    backgroundColor: color.primary,
+    gradation: gradation.primary,
+  },
+  prev: {
+    color: color.secondText,
+    backgroundColor: 'transparent',
+  },
+  answer: {
+    color: color.black,
+    backgroundColor: color.background,
+    boxShadow: shadow.default,
+  },
+});
+
 export const light: Theme = {
   name: 'light',
   color: lightColor,
-  gradation: {
-    primary: `linear-gradient(90deg, ${lightColor.primary} 0%, ${lightColor.gradationGreen} 100%)`,
-  },
-  shadow: {
-    default: `0px 0px 4px ${rgba(lightColor.black, 0.25)}`,
-  },
+  gradation,
+  shadow,
   fontSize: {
     xlarge: '2rem',
     large: '1.5rem',
