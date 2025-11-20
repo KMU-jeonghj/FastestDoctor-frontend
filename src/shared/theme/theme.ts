@@ -5,12 +5,12 @@ const createButtonScheme = (color: Theme['color']): Theme['buttonScheme'] => ({
   primary: {
     color: color.white,
     backgroundColor: color.primary,
-    gradation: light.gradation.primary,
+    gradation: `linear-gradient(90deg, ${lightColor.primary} 0%, ${lightColor.gradationGreen} 100%)`,
   },
   secondary: {
     color: color.black,
     backgroundColor: color.white,
-    boxShadow: light.shadow.default,
+    boxShadow: `0px 0px 4px ${rgba(lightColor.black, 0.25)}`,
   },
   option: {
     color: color.black,
@@ -20,7 +20,7 @@ const createButtonScheme = (color: Theme['color']): Theme['buttonScheme'] => ({
   optionActive: {
     color: color.white,
     backgroundColor: color.primary,
-    gradation: light.gradation.primary,
+    gradation: `linear-gradient(90deg, ${lightColor.primary} 0%, ${lightColor.gradationGreen} 100%)`,
   },
   prev: {
     color: color.secondText,
@@ -29,7 +29,7 @@ const createButtonScheme = (color: Theme['color']): Theme['buttonScheme'] => ({
   answer: {
     color: color.black,
     backgroundColor: color.background,
-    boxShadow: light.shadow.default,
+    boxShadow: `0px 0px 4px ${rgba(lightColor.black, 0.25)}`,
   },
 });
 
