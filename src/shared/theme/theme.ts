@@ -5,6 +5,7 @@ const createButtonScheme = (color: Theme['color']): Theme['buttonScheme'] => ({
   primary: {
     color: color.white,
     backgroundColor: color.primary,
+    gradation: `linear-gradient(90deg, ${color.primary} 0%, ${color.gradationGreen} 100%)`,
   },
   secondary: {
     color: color.black,

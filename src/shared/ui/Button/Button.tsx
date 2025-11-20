@@ -14,7 +14,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonSize: ButtonSize;
   fontSize: FontSizeKey;
   scheme: ButtonScheme;
-  borderRadius: BorderRadiusKey;
+  borderRadius?: BorderRadiusKey;
 }
 
 const Button = ({
@@ -46,18 +46,18 @@ const ButtonStyle = styled.button.withConfig({
       'buttonSize',
       'fontSize',
       'borderRadius',
-      'disableHoverOverlay',
-      '$active',
     ].includes(prop),
 }) <Omit<Props, 'children'>>`
   font-size: ${({ theme, buttonSize, fontSize }) => (theme.buttonSize[buttonSize].fontSize ? theme.buttonSize[buttonSize].fontSize : theme.fontSize[fontSize])};
   padding: ${({ theme, buttonSize }) => theme.buttonSize[buttonSize].padding};
   width: ${({ theme, buttonSize }) => (theme.buttonSize[buttonSize].width ? theme.buttonSize[buttonSize].width : 'auto')};
   color: ${({ theme, scheme }) => theme.buttonScheme[scheme].color};
-  background-color: ${({ theme, scheme }) =>
-    theme.buttonScheme[scheme].backgroundColor};
+  background: ${({ theme, scheme }) =>
+    scheme === 'primary' && theme.buttonScheme[scheme].gradation
+      ? theme.buttonScheme[scheme].gradation // primary이고 gradation이 있을 때
+      : theme.buttonScheme[scheme].backgroundColor}; // 그 외 (primary가 아니거나 gradation이 없을 때)
   font-weight: 'normal';
-  border-radius: ${({ theme, borderRadius }) => theme.borderRadius[borderRadius]};
+  border-radius: ${({ theme, borderRadius }) => theme.borderRadius[borderRadius!]};
   border: ${({ theme, scheme }) =>
     theme.buttonScheme[scheme].border
       ? `1px solid ${theme.buttonScheme[scheme].border}`

@@ -42,6 +42,7 @@ export type ButtonSchemeVariant = {
   backgroundColor: string;
   border?: string;
   boxShadow?: string;
+  gradation?: string;
 };
 
 export interface Theme {
