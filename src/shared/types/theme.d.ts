@@ -12,9 +12,13 @@ export type ColorKey =
   | 'black'
   | 'hoverOverlay';
 
+export type GradationKey = 'primary';
+
 export type ShadowKey = 'default';
 
 export type FontSizeKey = 'xlarge' | 'large' | 'medium' | 'small' | 'xsmall';
+
+export type FontWeightKey = 'regular' | 'medium' | 'semibold' | 'bold';
 
 export type ButtonSize =
   | 'large'
@@ -48,8 +52,10 @@ export type ButtonSchemeVariant = {
 export interface Theme {
   name: ThemeName;
   color: Record<ColorKey, string>;
+  gradation: Record<GradationKey, string>;
   shadow: Record<ShadowKey, string>;
   fontSize: Record<FontSizeKey, string>;
+  fontWeight: Record<FontWeightKey, string>;
   buttonSize: Record<
     ButtonSize,
     { fontSize?: string; width?: string; padding: string }

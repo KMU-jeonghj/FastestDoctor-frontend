@@ -5,20 +5,22 @@ const createButtonScheme = (color: Theme['color']): Theme['buttonScheme'] => ({
   primary: {
     color: color.white,
     backgroundColor: color.primary,
-    gradation: `linear-gradient(90deg, ${color.primary} 0%, ${color.gradationGreen} 100%)`,
+    gradation: light.gradation.primary,
   },
   secondary: {
     color: color.black,
     backgroundColor: color.white,
-    border: color.border,
+    boxShadow: light.shadow.default,
   },
   option: {
     color: color.black,
     backgroundColor: color.white,
+    border: color.border,
   },
   optionActive: {
     color: color.white,
     backgroundColor: color.primary,
+    gradation: light.gradation.primary,
   },
   prev: {
     color: color.secondText,
@@ -27,7 +29,7 @@ const createButtonScheme = (color: Theme['color']): Theme['buttonScheme'] => ({
   answer: {
     color: color.black,
     backgroundColor: color.background,
-    boxShadow: `0px 0px 4px ${rgba(color.black, 0.25)}`,
+    boxShadow: light.shadow.default,
   },
 });
 
@@ -47,8 +49,11 @@ const lightColor: Theme['color'] = {
 export const light: Theme = {
   name: 'light',
   color: lightColor,
+  gradation: {
+    primary: `linear-gradient(90deg, ${lightColor.primary} 0%, ${lightColor.gradationGreen} 100%)`,
+  },
   shadow: {
-    default: '0px 0px 10px rgba(0,0,0,0.1)',
+    default: `0px 0px 4px ${rgba(lightColor.black, 0.25)}`,
   },
   fontSize: {
     xlarge: '2rem',
@@ -56,6 +61,12 @@ export const light: Theme = {
     medium: '1rem',
     small: '0.875rem',
     xsmall: '0.75rem',
+  },
+  fontWeight: {
+    regular: '400',
+    medium: '500',
+    semibold: '600',
+    bold: '700',
   },
   buttonSize: {
     small: { padding: '0.5rem 0.875rem' },

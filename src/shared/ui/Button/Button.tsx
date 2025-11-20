@@ -5,6 +5,7 @@ import {
   ButtonScheme,
   ButtonSize,
   FontSizeKey,
+  FontWeightKey,
 } from 'shared/types/theme';
 import styled from 'styled-components';
 
@@ -13,6 +14,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   buttonSize: ButtonSize;
   fontSize: FontSizeKey;
+  fontWeight?: FontWeightKey;
   scheme: ButtonScheme;
   borderRadius?: BorderRadiusKey;
 }
@@ -21,6 +23,7 @@ const Button = ({
   children,
   buttonSize,
   fontSize,
+  fontWeight = 'medium',
   scheme,
   borderRadius = 'medium',
   onClick,
@@ -30,6 +33,7 @@ const Button = ({
     <ButtonStyle
       buttonSize={buttonSize}
       fontSize={fontSize}
+      fontWeight={fontWeight}
       scheme={scheme}
       onClick={onClick}
       borderRadius={borderRadius}
@@ -45,6 +49,7 @@ const ButtonStyle = styled.button.withConfig({
       'scheme',
       'buttonSize',
       'fontSize',
+      'fontWeight',
       'borderRadius',
     ].includes(prop),
 }) <Omit<Props, 'children'>>`
@@ -53,16 +58,20 @@ const ButtonStyle = styled.button.withConfig({
   width: ${({ theme, buttonSize }) => (theme.buttonSize[buttonSize].width ? theme.buttonSize[buttonSize].width : 'auto')};
   color: ${({ theme, scheme }) => theme.buttonScheme[scheme].color};
   background: ${({ theme, scheme }) =>
-    scheme === 'primary' && theme.buttonScheme[scheme].gradation
-      ? theme.buttonScheme[scheme].gradation // primary이고 gradation이 있을 때
-      : theme.buttonScheme[scheme].backgroundColor}; // 그 외 (primary가 아니거나 gradation이 없을 때)
-  font-weight: 600;
+   theme.buttonScheme[scheme].gradation
+     ? theme.buttonScheme[scheme].gradation // gradation이 있을 때 (primary, optionActive)
+     : theme.buttonScheme[scheme].backgroundColor}; // 그 외 (primary가 아니거나 gradation이 없을 때)
+  font-weight: ${({ theme, fontWeight }) => theme.fontWeight[fontWeight!]};
   border-radius: ${({ theme, borderRadius }) => theme.borderRadius[borderRadius!]};
   border: ${({ theme, scheme }) =>
     theme.buttonScheme[scheme].border
       ? `1px solid ${theme.buttonScheme[scheme].border}`
       : 'none'};
-    line-height: 1;
+  line-height: 1;
+  box-shadow: ${({ theme, scheme }) =>
+    theme.buttonScheme[scheme].boxShadow
+        ? theme.buttonScheme[scheme].boxShadow
+        : 'none'};
   
   ${hoverOverlay}
 `;
