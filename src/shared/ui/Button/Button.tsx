@@ -56,7 +56,7 @@ const ButtonStyle = styled.button.withConfig({
     scheme === 'primary' && theme.buttonScheme[scheme].gradation
       ? theme.buttonScheme[scheme].gradation // primary이고 gradation이 있을 때
       : theme.buttonScheme[scheme].backgroundColor}; // 그 외 (primary가 아니거나 gradation이 없을 때)
-  font-weight: 'normal';
+  font-weight: 600;
   border-radius: ${({ theme, borderRadius }) => theme.borderRadius[borderRadius!]};
   border: ${({ theme, scheme }) =>
     theme.buttonScheme[scheme].border
