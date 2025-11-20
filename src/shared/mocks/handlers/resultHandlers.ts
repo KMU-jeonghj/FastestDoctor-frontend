@@ -17,7 +17,7 @@ const department = "내과";
 export const resultHandlers = [
 
   http.get(
-    `${import.meta.env.VITE_API_BASE_URL}/result`,
+    `${import.meta.env.VITE_API_BASE_URL}/v1/result`,
     async () => {
       const res: ResultResponseType = {
         result,

@@ -5,7 +5,7 @@ import { UserType } from 'entities/user/types/user.type';
 
 export const userHandlers = [
   http.post(
-    `${import.meta.env.VITE_API_BASE_URL}/users`,
+    `${import.meta.env.VITE_API_BASE_URL}/v1/users`,
     async ({ request }) => {
       const formData = await request.formData();
       const newUser: UserType = {
