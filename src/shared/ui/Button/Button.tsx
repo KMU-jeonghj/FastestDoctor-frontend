@@ -27,6 +27,7 @@ const Button = ({
   scheme,
   borderRadius = 'medium',
   onClick,
+  ...rest
 
 }: Props) => {
   return (
@@ -37,6 +38,7 @@ const Button = ({
       scheme={scheme}
       onClick={onClick}
       borderRadius={borderRadius}
+      {...rest}
     >
       {children}
     </ButtonStyle>
@@ -58,9 +60,9 @@ const ButtonStyle = styled.button.withConfig({
   width: ${({ theme, buttonSize }) => (theme.buttonSize[buttonSize].width ? theme.buttonSize[buttonSize].width : 'auto')};
   color: ${({ theme, scheme }) => theme.buttonScheme[scheme].color};
   background: ${({ theme, scheme }) =>
-   theme.buttonScheme[scheme].gradation
-     ? theme.buttonScheme[scheme].gradation // gradation이 있을 때 (primary, optionActive)
-     : theme.buttonScheme[scheme].backgroundColor}; // 그 외 (primary가 아니거나 gradation이 없을 때)
+    theme.buttonScheme[scheme].gradation
+      ? theme.buttonScheme[scheme].gradation // gradation이 있을 때 (primary, optionActive)
+      : theme.buttonScheme[scheme].backgroundColor}; // 그 외 (primary가 아니거나 gradation이 없을 때)
   font-weight: ${({ theme, fontWeight }) => theme.fontWeight[fontWeight!]};
   border-radius: ${({ theme, borderRadius }) => theme.borderRadius[borderRadius!]};
   border: ${({ theme, scheme }) =>
@@ -70,8 +72,8 @@ const ButtonStyle = styled.button.withConfig({
   line-height: 1;
   box-shadow: ${({ theme, scheme }) =>
     theme.buttonScheme[scheme].boxShadow
-        ? theme.buttonScheme[scheme].boxShadow
-        : 'none'};
+      ? theme.buttonScheme[scheme].boxShadow
+      : 'none'};
   
   ${hoverOverlay}
 `;

@@ -36,6 +36,13 @@ export const ErrorMsg = styled.span`
   margin-left: 0.5rem;
 `;
 
+export const ButtonGroup = styled.div`
+  display: flex;
+  gap: 8px; /* 버튼 사이 간격 */
+  margin-top: 8px;
+  width: 100%;
+`;
+
 
 const baseStyle = css<{ $hasError: boolean }>`
   width: 100%;

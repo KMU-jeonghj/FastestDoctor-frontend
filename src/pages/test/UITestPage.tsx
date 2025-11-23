@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from 'shared/ui/Button/Button';
 import Empty from 'shared/ui/Empty/Empty';
-import { InputText } from 'shared/ui/InputText/InputText';
+import { InputSelect } from 'shared/ui/Input/InputSelect';
+import { InputText } from 'shared/ui/Input/InputText';
 import { Loading } from 'shared/ui/Loading/Loading';
 import Logo from 'shared/ui/Logo/Logo';
 import Title from 'shared/ui/Title/Title';
@@ -9,6 +10,9 @@ import styled from 'styled-components'
 import Header from 'widgets/common/Header';
 
 const UITestPage = () => {
+
+  const [selectedGender, setSelectedGender] = React.useState<number>(0);
+
   return (
     <UITestPageStyle>
       <h1>UITestPage</h1>
@@ -49,7 +53,16 @@ const UITestPage = () => {
         <Empty text='내용이 없습니다.' />
       </div>
 
-
+      <InputSelect
+        label="성별"
+        name="gender"
+        value={selectedGender}
+        onChange={setSelectedGender}
+        options={[
+          { label: '남성', value: 0 },
+          { label: '여성', value: 1 },
+        ]}
+      />
 
     </UITestPageStyle>
   )

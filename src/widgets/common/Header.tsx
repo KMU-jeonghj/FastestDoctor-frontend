@@ -7,7 +7,7 @@ import styled from 'styled-components'
 const Header = () => {
   return (
     <HeaderStyle>
-      <Link to='/userinfo'>
+      <Link to='/'>
         <div className='logo-box'>
           <Logo type='square' />
           <div className='title'>

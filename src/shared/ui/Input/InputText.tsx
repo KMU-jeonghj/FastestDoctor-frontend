@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { ErrorMsg, InputWrapper, Label, RequiredMark, StyledInput, StyledTextArea, Wrapper } from "./InputTextStyle";
+import { ErrorMsg, InputWrapper, Label, RequiredMark, StyledInput, StyledTextArea, Wrapper } from "./InputStyle";
 import { FontSizeKey } from "shared/types/theme";
 
 type InputType = 'text' | 'textarea';

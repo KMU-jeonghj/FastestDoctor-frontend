@@ -35,7 +35,7 @@ const createButtonScheme = (color: Theme['color']): Theme['buttonScheme'] => ({
   },
   option: {
     color: color.black,
-    backgroundColor: color.white,
+    backgroundColor: color.background,
     border: color.border,
   },
   optionActive: {

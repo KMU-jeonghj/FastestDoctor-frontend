@@ -5,12 +5,11 @@ import styled from 'styled-components'
 const UserInfoPage = () => {
   return (
     <UserInfoPageStyle>
-      <h1>UserInfoPage</h1>
       <UserInfoForm />
     </UserInfoPageStyle>
-  )
+  );
 }
 
 const UserInfoPageStyle = styled.div``;
 
-export default UserInfoPage
+export default UserInfoPage;
