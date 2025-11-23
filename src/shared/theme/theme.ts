@@ -81,8 +81,8 @@ export const light: Theme = {
   borderRadius: {
     small: '5px',
     medium: '10px',
-    large: '50px',
-    round: '100px',
+    large: '25px',
+    round: '50px',
   },
   layout: {
     width: {

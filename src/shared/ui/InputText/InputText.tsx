@@ -1,28 +1,62 @@
-import styled from "styled-components";
+import { forwardRef } from "react";
+import { ErrorMsg, InputWrapper, Label, RequiredMark, StyledInput, StyledTextArea, Wrapper } from "./InputTextStyle";
+import { FontSizeKey } from "shared/types/theme";
 
+type InputType = 'text' | 'textarea';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  labelSize?: FontSizeKey
   placeholder?: string;
   name: string;
   error?: string;
   required?: boolean;
+  type?: InputType;
 }
 
-export const InputText = ({ label, placeholder, name, error, required, ...rest }: Props) => {
-  return <InputTextStyle type="text" placeholder={placeholder} name={name} required={required} {...rest} />;
-}
+export const InputText = forwardRef<
+  HTMLInputElement | HTMLTextAreaElement,
+  Props
+>(
+  (
+    { label, labelSize = 'medium', name, error, required, type = 'text', placeholder, ...rest }, ref,
+  ) => {
+    const isTextArea = type === 'textarea';
+    const isText = type === 'text';
 
-// big, small 분기
-// 유효성 검사 추가
+    return (
+      <Wrapper>
+        {label && (
+          <Label htmlFor={name} $labelSize={labelSize}>
+            {label}
+            {required && <RequiredMark>*</RequiredMark>}
+          </Label>
+        )}
+        <InputWrapper>
+          {isTextArea ? (
+            <StyledTextArea
+              id={name}
+              name={name}
+              placeholder={placeholder}
+              $hasError={!!error}
+              ref={ref as React.Ref<HTMLTextAreaElement>}
+              {...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
+            />
+          ) : (
+            <StyledInput
+              id={name}
+              name={name}
+              placeholder={placeholder}
+              $hasError={!!error}
+              ref={ref as React.Ref<HTMLInputElement>}
+              {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
+            />
+          )}
+          {error && <ErrorMsg>{error}</ErrorMsg>}
+        </InputWrapper>
+      </Wrapper>
+    );
+  });
 
-const InputTextStyle = styled.input`
-    width: 100%;
-    padding: 0.5rem 1rem;
-    border: 1px solid ${({theme}) =>  theme.color.border};
-    border-radius: ${({theme}) => theme.borderRadius.medium};
-    font-size: ${({theme}) => theme.fontSize.xsmall};
-    line-height: 1.5;
-    color: ${({theme}) => theme.color.secondText};
-    box-shadow: ${({theme}) => theme.shadow.default};
-`;
+
+
