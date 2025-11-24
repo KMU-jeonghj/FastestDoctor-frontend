@@ -27,7 +27,7 @@ export const diagnosisHandlers = [
   ),
 
   http.post(
-    `${import.meta.env.VITE_API_BASE_URL}/v1/answer`,
+    `${import.meta.env.VITE_API_BASE_URL}/v1/question`,
     async ({ request }) => {
       const body = (await request.json()) as AnswerRequestType;
       const isClear = body.answer === "기타" ? true : false;

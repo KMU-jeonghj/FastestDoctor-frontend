@@ -1,10 +1,11 @@
+import QuestionBox from 'features/diagnosis/ui/QuestionBox';
 import React from 'react'
 import styled from 'styled-components'
 
 const DiagnosisPage = () => {
   return (
     <DiagnosisPageStyle>
-      <h1>DiagnosisPage</h1>
+      <QuestionBox />
     </DiagnosisPageStyle>
   )
 }

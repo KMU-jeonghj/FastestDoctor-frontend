@@ -1,11 +1,11 @@
-import { forwardRef } from "react";
+import React, { forwardRef } from "react";
 import { ErrorMsg, InputWrapper, Label, RequiredMark, StyledInput, StyledTextArea, Wrapper } from "./InputStyle";
 import { FontSizeKey } from "shared/types/theme";
 
 type InputType = 'text' | 'textarea';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
+  label?: React.ReactNode;
   labelSize?: FontSizeKey
   placeholder?: string;
   name: string;

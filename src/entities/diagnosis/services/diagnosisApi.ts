@@ -7,9 +7,9 @@ export const getQuestion = async (): Promise<QuestionResponseType> => {
   const response = await httpClient.get('/v1/question');
   return response.data;
 };
-
+``
 export const answer = async (data: AnswerRequestType): Promise<AnswerResponseType> => {
-    const response = await httpClient.post('/v1/answer', data);
-    return response.data;
+  const response = await httpClient.post('/v1/question', data);
+  return response.data;
 }
 

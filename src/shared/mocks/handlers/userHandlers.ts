@@ -7,14 +7,7 @@ export const userHandlers = [
   http.post(
     `${import.meta.env.VITE_API_BASE_URL}/v1/users`,
     async ({ request }) => {
-      const formData = await request.formData();
-      const newUser: UserType = {
-        name: formData.get('name') as string,
-        age: Number(formData.get('age')),
-        gender: Number(formData.get('gender')),
-        location: formData.get('location') as string,
-        advancedInformation: formData.get('advancedInformation') as string,
-      };
+      const newUser = (await request.json()) as UserType;
       return createSuccessResponse('유저 등록 성공', newUser);
     },
   )

@@ -24,6 +24,6 @@ const LayoutStyle = styled.div`
 `;
 
 const BackgroundStyle = styled.div`
-  /* background-color: ${({ theme }) => theme.color.background}; */
+  background-color: ${({ theme }) => theme.color.background};
 `;
 

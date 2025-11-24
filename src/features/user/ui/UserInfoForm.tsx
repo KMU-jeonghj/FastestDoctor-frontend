@@ -1,5 +1,5 @@
 import { UserType } from 'entities/user/types/user.type';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form';
 import { CardBaseStyle } from 'shared/ui/Card/CardStyle';
 import Logo from 'shared/ui/Logo/Logo';
@@ -7,23 +7,41 @@ import Title from 'shared/ui/Title/Title';
 import styled, { useTheme } from 'styled-components'
 import { useRegisterUser } from '../hooks/useRegisterUser';
 import { InputText } from 'shared/ui/Input/InputText';
-import { LucideUser, RotateCcw } from 'lucide-react';
+import { Loader2, LucideHeart, LucideUser, RotateCcw } from 'lucide-react';
 import { InputSelect } from 'shared/ui/Input/InputSelect';
-import Button from 'shared/ui/Button/Button';
 import { hoverOverlay } from 'shared/styles/hoverOverlay';
+import { useCurrentLocation } from '../hooks/useCurrentLocation';
+import Button from 'shared/ui/Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 
 const UserInfoForm = () => {
 
   const theme = useTheme();
 
+
   const {
     register,
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
     setError,
   } = useForm<UserType>();
+
+  const { location, isLoading, error, fetchLocation } = useCurrentLocation();
+
+  // 컴포넌트가 처음 렌더링될 때 자동으로 위치 조회
+  useEffect(() => {
+    fetchLocation();
+  }, []);
+
+  // 주소(location) 상태가 바뀌면 -> 인풋 창에 값 넣기
+  useEffect(() => {
+    if (location) {
+      setValue('location', location);
+    }
+  }, [location, setValue]);
 
   const { mutate, isPending } = useRegisterUser();
 
@@ -94,12 +112,22 @@ const UserInfoForm = () => {
                     <InputText
                       label='현재 위치'
                       labelSize='small'
-                      placeholder="서울시 성북구"
+                      placeholder="위치를 불러오는 중..."
                       {...register("location")} // 주소 등록
+                      disabled={isLoading}
                       style={{ marginTop: 0 }} // InputText 기본 마진 제거용
                     />
-                    <button type="button" className="refresh-btn">
-                      <RotateCcw size={16} />
+                    <button
+                      type="button"
+                      className="refresh-btn"
+                      onClick={fetchLocation}
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <Loader2 size={16} className="animate-spin" />
+                      ) : (
+                        <RotateCcw size={16} />
+                      )}
                     </button>
                   </div>
                 </div>
@@ -107,11 +135,32 @@ const UserInfoForm = () => {
 
             </div>
             <div className="medical-input">
-
+              <InputText
+                label={
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <LucideHeart size={20} color={theme.color.primary} />
+                    <span>의무 기록</span>
+                  </div>
+                }
+                labelSize='medium'
+                placeholder="과거 병력이나 알레르기 정보를 입력하세요"
+                {...register("advancedInformation")}
+                type='textarea'
+              />
             </div>
           </div>
           <div className="submit">
-
+            <Button
+              type="submit"
+              buttonSize="large"
+              fontSize="medium"
+              fontWeight='semibold'
+              scheme="primary"
+              borderRadius="medium"
+              disabled={isPending}
+            >
+              상담 시작하기
+            </Button>
           </div>
         </form>
 
@@ -140,6 +189,7 @@ const UserInfoFormStyle = styled.div`
     }
 
     .base-input-container {
+      margin-top: 4rem;
       display: flex;
       flex-direction: column;
       gap: 1rem;
@@ -177,10 +227,27 @@ const UserInfoFormStyle = styled.div`
                 cursor: pointer;
                 color: ${({ theme }) => theme.color.secondText};
 
+                @keyframes spin {
+                  from { transform: rotate(0deg); }
+                  to { transform: rotate(360deg); }
+                }
+
+                .animate-spin {
+                  animation: spin 1s linear infinite;
+  }
+
                 ${hoverOverlay}
             }
         }
       }
+    }
+
+    .medical-input {
+      margin-top: 3rem;
+    }
+
+    .submit {
+      margin-top: 1.5rem;
     }
   }
 
