@@ -57,7 +57,7 @@ const UserInfoForm = () => {
           <Logo type='circle' />
           <div className="title">
             <Title fontSize='large' fontWeight='semibold'>AI 의료 상담 시작하기</Title>
-            <Title fontSize='small' fontWeight='medium' color='secondText'>정확한 진단을 위해 정보를 입력해주세요.</Title>
+            <Title fontSize='small' fontWeight='medium' color='secondText'>정확한 진단을 위해 정보를 입력해주세요</Title>
           </div>
         </div>
 
@@ -77,14 +77,14 @@ const UserInfoForm = () => {
                   label="이름"
                   labelSize='small'
                   placeholder="이름을 입력하세요"
-                  {...register("name", { required: "이름은 필수입니다." })}
+                  {...register("name", { required: "이름을 입력해주세요." })}
                   error={errors.name?.message}
                 />
                 <InputText
                   label="나이"
                   labelSize='small'
                   placeholder="나이를 입력하세요"
-                  {...register("age", { required: "나이는 필수입니다." })}
+                  {...register("age", { required: "나이를 입력해주세요." })}
                   error={errors.age?.message}
                 />
                 <Controller
@@ -144,8 +144,9 @@ const UserInfoForm = () => {
                 }
                 labelSize='medium'
                 placeholder="과거 병력이나 알레르기 정보를 입력하세요"
-                {...register("advancedInformation")}
+                {...register("advancedInformation",  { required: "의무 기록을 입력해주세요." })}
                 type='textarea'
+                error={errors.advancedInformation?.message}
               />
             </div>
           </div>

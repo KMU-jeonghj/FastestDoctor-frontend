@@ -74,6 +74,13 @@ const ButtonStyle = styled.button.withConfig({
     theme.buttonScheme[scheme].boxShadow
       ? theme.buttonScheme[scheme].boxShadow
       : 'none'};
+
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.color.primary};
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.color.primary};
+  }
   
   ${hoverOverlay}
 `;

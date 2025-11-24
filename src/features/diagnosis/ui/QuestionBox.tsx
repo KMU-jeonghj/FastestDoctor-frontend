@@ -90,6 +90,8 @@ const QuestionBoxStyle = styled.div`
       align-items: center;
       gap: 1rem; 
       padding-left: 1rem;
+
+
     }
 
     .prev-button {
