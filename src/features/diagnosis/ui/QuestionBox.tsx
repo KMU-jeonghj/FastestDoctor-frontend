@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CardBaseStyle } from 'shared/ui/Card/CardStyle';
 import styled, { useTheme } from 'styled-components'
 import { useGetQuestion } from '../hooks/useGetQuestion';
@@ -8,22 +8,45 @@ import Title from 'shared/ui/Title/Title';
 import Button from 'shared/ui/Button/Button';
 import AnswerMark from './AnswerMark';
 import { ArrowLeft } from 'lucide-react';
+import { AnswerRequestType } from 'entities/diagnosis/types/diagnosis.type';
+import { useNavigate } from 'react-router-dom';
+import { useUserStore } from 'entities/user/store/userStore';
 
 const QuestionBox = () => {
 
   const theme = useTheme();
   const { data, isLoading, error } = useGetQuestion();
   const { mutate, isPending } = useAnswer();
+  const navigate = useNavigate();
+
+
 
   if (error || !data) {
-    return <div>데이터를 불러올 수 없습니다.</div>; 
+    return <div>데이터를 불러올 수 없습니다.</div>;
   }
 
   const { question, answer } = data;
 
-  if (isLoading) {
+  if (isLoading || isPending) {
     return <Loading text='AI가 분석하는 중...' />;
   }
+
+  const handleAnswer = (data: AnswerRequestType) => {
+    mutate(data, {
+      onSuccess: (response) => {
+        if (response.isClear) {
+          navigate('/result');
+          return;
+        }
+      }
+    });
+  }
+
+  // prev 핸들러
+  // const handlePrev = () => {
+
+  // }
+
 
   return (
     <QuestionBoxStyle>
@@ -34,30 +57,31 @@ const QuestionBox = () => {
 
         <div className="answer-group">
           {answer.map((item, index) => (
-            <Button 
-            key={index}
-            buttonSize='large' 
-            fontSize='medium' 
-            fontWeight='semibold'
-            scheme='answer'
+            <Button
+              key={index}
+              buttonSize='large'
+              fontSize='medium'
+              fontWeight='semibold'
+              scheme='answer'
+              onClick={() => handleAnswer({ question, answer: item })}
             >
               <AnswerMark />
               {item}
-              </Button>
+            </Button>
           ))}
         </div>
 
-        <div className="prev-button">
-          <Button 
-            buttonSize='small' 
-            fontSize='medium' 
+        {/* <div className="prev-button">
+          <Button
+            buttonSize='small'
+            fontSize='medium'
             scheme='prev'
           >
-            <ArrowLeft 
-            size={18} color={theme.color.secondText}/>
+            <ArrowLeft
+              size={18} color={theme.color.secondText} />
             이전 질문으로
           </Button>
-        </div>
+        </div> */}
       </div>
     </QuestionBoxStyle>
   )
@@ -108,6 +132,7 @@ const QuestionBoxStyle = styled.div`
       transform: translateY(-1px); /* -1px ~ -2px 정도 위로 올림 */
     }
     }
+  }
 `;
 
 export default QuestionBox

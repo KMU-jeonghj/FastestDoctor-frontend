@@ -5,6 +5,7 @@ import UserInfoPage from 'pages/user/UserInfoPage';
 import DiagnosisPage from 'pages/diagnosis/DiagnosisPage';
 import ResultPage from 'pages/result/ResultPage';
 import UITestPage from 'pages/test/UITestPage';
+import ProtectedRoute from './ProtectedRoute';
 
 export const Routers = () => {
   return (
@@ -12,8 +13,11 @@ export const Routers = () => {
       <Route element={<Layout />}>
         <Route path="/" element={<UserInfoPage />} />
         <Route path="/userinfo" element={<UserInfoPage />} />
-        <Route path="/diagnosis" element={<DiagnosisPage />} />
-        <Route path="/result" element={<ResultPage />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/diagnosis" element={<DiagnosisPage />} />
+          <Route path="/result" element={<ResultPage />} />
+        </Route>
+
         <Route path="/uitest" element={<UITestPage />} />
       </Route>
     </Routes>

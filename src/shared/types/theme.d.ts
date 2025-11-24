@@ -23,7 +23,8 @@ export type FontWeightKey = 'regular' | 'medium' | 'semibold' | 'bold';
 export type ButtonSize =
   | 'large'
   | 'medium'
-  | 'small';
+  | 'small'
+  | 'xsmall';
 
 export type ButtonScheme =
   | 'primary'
@@ -31,7 +32,8 @@ export type ButtonScheme =
   | 'option'
   | 'optionActive'
   | 'prev'
-  | 'answer';
+  | 'answer'
+  | 'department';
 
 export type BorderRadiusKey = 'small' | 'medium' | 'large' | 'round';
 

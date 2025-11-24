@@ -1,4 +1,5 @@
 import AnswerMark from 'features/diagnosis/ui/AnswerMark';
+import Department from 'features/result/ui/department';
 import React from 'react'
 import Button from 'shared/ui/Button/Button';
 import Empty from 'shared/ui/Empty/Empty';
@@ -68,7 +69,10 @@ const UITestPage = () => {
       <div className="gap">
         <AnswerMark />
       </div>
-      
+      <div className="gap">
+        <Department>소화기 내과</Department>
+      </div>
+
 
     </UITestPageStyle>
   )

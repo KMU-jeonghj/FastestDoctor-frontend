@@ -18,7 +18,7 @@ export const useAnswer = (option?: {
   >({
     mutationFn: answer,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['answer'] });
+      queryClient.invalidateQueries({ queryKey: ['question'] });
       option?.onSuccess?.();
     },
     onError: (err) => {

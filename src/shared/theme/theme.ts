@@ -52,6 +52,10 @@ const createButtonScheme = (color: Theme['color']): Theme['buttonScheme'] => ({
     backgroundColor: color.background,
     boxShadow: shadow.default,
   },
+  department: {
+    color: color.black,
+    backgroundColor: color.secondary
+  }
 });
 
 export const light: Theme = {
@@ -73,6 +77,7 @@ export const light: Theme = {
     bold: '700',
   },
   buttonSize: {
+    xsmall: { padding: '0.25rem 0.625rem' },
     small: { padding: '0.5rem 0.875rem' },
     medium: { padding: '1rem 5rem' },
     large: { width: '100%', padding: '1rem 0' },

@@ -13,11 +13,13 @@ import { hoverOverlay } from 'shared/styles/hoverOverlay';
 import { useCurrentLocation } from '../hooks/useCurrentLocation';
 import Button from 'shared/ui/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import { useUserStore } from 'entities/user/store/userStore';
 
 
 const UserInfoForm = () => {
 
   const theme = useTheme();
+  const setUserInfo = useUserStore((state) => state.setUserInfo);
 
 
   const {
@@ -46,7 +48,11 @@ const UserInfoForm = () => {
   const { mutate, isPending } = useRegisterUser();
 
   const onSubmit = (data: UserType) => {
-    mutate(data);
+    mutate(data, {
+      onSuccess: () => {
+        setUserInfo(data);
+      }
+    });
   };
 
   return (
@@ -144,7 +150,7 @@ const UserInfoForm = () => {
                 }
                 labelSize='medium'
                 placeholder="과거 병력이나 알레르기 정보를 입력하세요"
-                {...register("advancedInformation",  { required: "의무 기록을 입력해주세요." })}
+                {...register("advancedInformation", { required: "의무 기록을 입력해주세요." })}
                 type='textarea'
                 error={errors.advancedInformation?.message}
               />
