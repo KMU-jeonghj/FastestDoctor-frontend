@@ -29,12 +29,13 @@ const HeaderStyle = styled.div`
   align-items: center;
   background-color: ${({ theme }) => theme.color.background};
   border-bottom: 1px solid ${({ theme }) => theme.color.border};
-  cursor: pointer;
+
   
   .logo-box {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    cursor: pointer;
   }
 `;
 

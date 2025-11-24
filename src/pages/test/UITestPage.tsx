@@ -1,3 +1,4 @@
+import AnswerMark from 'features/diagnosis/ui/AnswerMark';
 import React from 'react'
 import Button from 'shared/ui/Button/Button';
 import Empty from 'shared/ui/Empty/Empty';
@@ -63,6 +64,11 @@ const UITestPage = () => {
           { label: '여성', value: 1 },
         ]}
       />
+
+      <div className="gap">
+        <AnswerMark />
+      </div>
+      
 
     </UITestPageStyle>
   )
