@@ -57,7 +57,7 @@ export const diagnosisHandlers = [
 
   // POST: 답변을 받으면 다음 단계로 넘김 (currentStep + 1)
   http.post(
-    `${import.meta.env.VITE_API_BASE_URL}/v1/question`,
+    `${import.meta.env.VITE_API_BASE_URL}/v1/answers`,
     async ({ request }) => {
       const body = (await request.json()) as AnswerRequestType;
 
