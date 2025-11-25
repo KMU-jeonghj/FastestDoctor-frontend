@@ -11,6 +11,7 @@ import { ArrowLeft } from 'lucide-react';
 import { AnswerRequestType } from 'entities/diagnosis/types/diagnosis.type';
 import { useNavigate } from 'react-router-dom';
 import { useUserStore } from 'entities/user/store/userStore';
+import Empty from 'shared/ui/Empty/Empty';
 
 const QuestionBox = () => {
 
@@ -22,7 +23,7 @@ const QuestionBox = () => {
 
 
   if (error || !data) {
-    return <div>데이터를 불러올 수 없습니다.</div>;
+    return <Empty>데이터를 불러올 수 없습니다.</Empty>;
   }
 
   const { question, answer } = data;

@@ -62,7 +62,7 @@ const UserInfoForm = () => {
         <div className="header">
           <Logo type='circle' />
           <div className="title">
-            <Title fontSize='large' fontWeight='semibold'>AI 의료 상담 시작하기</Title>
+            <Title fontSize='large' fontWeight='semibold'>AI 의료 상담</Title>
             <Title fontSize='small' fontWeight='medium' color='secondText'>정확한 진단을 위해 정보를 입력해주세요</Title>
           </div>
         </div>

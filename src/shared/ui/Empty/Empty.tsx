@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 
 interface Props {
-  text: string;
+  children: ReactNode;
 }
 
-const Empty = ({ text }: Props) => {
+const Empty = ({ children }: Props) => {
   return (
     <EmptyStyle>
-      {text}
+      {children}
     </EmptyStyle>
   )
 }

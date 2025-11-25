@@ -1,5 +1,5 @@
 import AnswerMark from 'features/diagnosis/ui/AnswerMark';
-import Department from 'features/result/ui/department';
+import Department from 'features/result/ui/Department';
 import React from 'react'
 import Button from 'shared/ui/Button/Button';
 import Empty from 'shared/ui/Empty/Empty';
@@ -52,7 +52,7 @@ const UITestPage = () => {
         <Header />
       </div>
       <div className='gap'>
-        <Empty text='내용이 없습니다.' />
+        <Empty>내용이 없습니다.</Empty>
       </div>
 
       <InputSelect
