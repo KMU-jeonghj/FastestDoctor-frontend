@@ -1,4 +1,4 @@
-import { http } from 'msw';
+import { http, HttpResponse } from 'msw';
 import { createSuccessResponse } from '../util/response';
 import { ResultResponseType } from 'entities/result/types/result.type';
 
@@ -14,6 +14,11 @@ FODMAP 식단: 유당, 과당, 양파, 마늘, 밀가루 등 고FODMAP 음식 �
 const department = "내과";
 
 
+const response: ResultResponseType = {
+  result,
+  department
+}
+
 export const resultHandlers = [
 
   http.get(
@@ -24,6 +29,8 @@ export const resultHandlers = [
         department
       };
       return createSuccessResponse('결과 조회 성공', res);
+      //return new HttpResponse(null, { status: 404 });
+      // return HttpResponse.json(null);
     }
   ),
 
