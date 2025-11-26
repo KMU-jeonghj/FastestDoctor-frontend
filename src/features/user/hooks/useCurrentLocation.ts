@@ -1,4 +1,4 @@
-// shared/hooks/useCurrentLocation.ts
+
 import { useState, useEffect } from 'react';
 
 interface AddressState {
@@ -37,10 +37,10 @@ export const useCurrentLocation = () => {
           const addrParts = data.address;
           const city = addrParts.city || addrParts.province || '';
           const district = addrParts.borough || addrParts.district || '';
-          const road = addrParts.road || '';
+          //const road = addrParts.road || '';
 
           // 주소 조합
-          const fullAddress = `${city} ${district} ${road}`.trim();
+          const fullAddress = `${city} ${district}`.trim();
 
           setLocation({
             location: fullAddress,

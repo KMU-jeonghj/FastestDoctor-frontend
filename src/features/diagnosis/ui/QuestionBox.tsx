@@ -26,7 +26,7 @@ const QuestionBox = () => {
     return <Empty>데이터를 불러올 수 없습니다.</Empty>;
   }
 
-  const { question, answer } = data;
+  const { question, options } = data;
 
   if (isLoading || isPending) {
     return <Loading text='AI가 분석하는 중...' />;
@@ -57,7 +57,7 @@ const QuestionBox = () => {
         </div>
 
         <div className="answer-group">
-          {answer.map((item, index) => (
+          {options.map((item, index) => (
             <Button
               key={index}
               buttonSize='large'

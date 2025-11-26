@@ -1,7 +1,8 @@
 
 export interface QuestionResponseType {
+  step: number;
   question: string;
-  answer: string[];
+  options: string[];
 
 }
 
