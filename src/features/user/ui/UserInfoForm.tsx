@@ -48,9 +48,14 @@ const UserInfoForm = () => {
   const { mutate, isPending } = useRegisterUser();
 
   const onSubmit = (data: UserType) => {
-    mutate(data, {
+    const payload = {
+      ...data,
+      age: Number(data.age)
+    };
+
+    mutate(payload, {
       onSuccess: () => {
-        setUserInfo(data);
+        setUserInfo(payload);
       }
     });
   };
