@@ -5,8 +5,9 @@ import { AnswerRequestType, QuestionResponseType } from 'entities/diagnosis/type
 // 질문 데이터 
 const MOCK_QUESTIONS: QuestionResponseType[] = [
   {
+    step: 1,
     question: "1. 어떤 부위의 증상으로 상담을 원하시나요?",
-    answer: [
+    options: [
       "머리/두통 관련",
       "목/경추 관련",
       "가슴/흉부 관련",
@@ -15,8 +16,9 @@ const MOCK_QUESTIONS: QuestionResponseType[] = [
     ]
   },
   {
+    step: 2,
     question: "2. 증상이 언제부터 시작되었나요?",
-    answer: [
+    options: [
       "오늘 갑자기 시작됨",
       "일주일 전부터",
       "한 달 이상 지속됨",
@@ -24,8 +26,9 @@ const MOCK_QUESTIONS: QuestionResponseType[] = [
     ]
   },
   {
+    step: 3,
     question: "3. 통증의 정도는 어느 정도인가요? (1~10)",
-    answer: [
+    options: [
       "약함 (1-3)",
       "중간 (4-6)",
       "심함 (7-8)",
