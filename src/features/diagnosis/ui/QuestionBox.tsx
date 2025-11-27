@@ -52,25 +52,35 @@ const QuestionBox = () => {
   return (
     <QuestionBoxStyle>
       <div className="card">
-        <div className="question">
-          <Title fontSize='large' fontWeight='semibold'>{question}</Title>
-        </div>
+        {question && (
+          <div className="question">
+            <Title fontSize='large' fontWeight='semibold'>{question}</Title>
+          </div>
+        )}
 
-        <div className="answer-group">
-          {options.map((item, index) => (
-            <Button
-              key={index}
-              buttonSize='large'
-              fontSize='medium'
-              fontWeight='semibold'
-              scheme='answer'
-              onClick={() => handleAnswer({ question, answer: item })}
-            >
-              <AnswerMark />
-              {item}
-            </Button>
-          ))}
-        </div>
+        {options ? (
+          <div className="answer-group">
+            {options.map((item, index) => (
+              <Button
+                key={index}
+                buttonSize='large'
+                fontSize='medium'
+                fontWeight='semibold'
+                scheme='answer'
+                onClick={() => handleAnswer({ question, answer: item })}
+              >
+                <AnswerMark />
+                {item}
+              </Button>
+            ))}
+          </div>
+        ) :
+        (
+          <Empty>데이터를 불러오지 못했습니다.</Empty>
+        )
+        }
+
+        
 
         {/* <div className="prev-button">
           <Button
