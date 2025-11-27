@@ -29,7 +29,12 @@ const QuestionBox = () => {
   const { question, options } = data;
 
   if (isLoading || isPending) {
-    return <Loading text='AI가 분석하는 중...' />;
+    return (
+      <div className="card">
+        <Loading text='AI가 분석하는 중...' />
+      </div>
+    );
+    
   }
 
   const handleAnswer = (data: AnswerRequestType) => {
