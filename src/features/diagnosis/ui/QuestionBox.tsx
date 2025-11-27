@@ -12,6 +12,7 @@ import { AnswerRequestType } from 'entities/diagnosis/types/diagnosis.type';
 import { useNavigate } from 'react-router-dom';
 import { useUserStore } from 'entities/user/store/userStore';
 import Empty from 'shared/ui/Empty/Empty';
+import { setTimeout } from 'timers/promises';
 
 const QuestionBox = () => {
 
@@ -22,11 +23,15 @@ const QuestionBox = () => {
 
 
 
-  if (error || !data) {
-    return <Empty>데이터를 불러올 수 없습니다.</Empty>;
+  if (error) {
+    return (
+      <div className="card">
+        <Empty>데이터를 불러올 수 없습니다.</Empty>
+      </div>
+    );
   }
 
-  const { question, options } = data;
+  const { question, options } = data || {};
 
   if (isLoading || isPending) {
     return (
@@ -63,7 +68,7 @@ const QuestionBox = () => {
           </div>
         )}
 
-        {options ? (
+        {options && question ? (
           <div className="answer-group">
             {options?.map((item, index) => (
               <Button
