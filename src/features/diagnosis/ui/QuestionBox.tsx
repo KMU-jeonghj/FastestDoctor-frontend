@@ -60,7 +60,7 @@ const QuestionBox = () => {
 
         {options ? (
           <div className="answer-group">
-            {options.map((item, index) => (
+            {options?.map((item, index) => (
               <Button
                 key={index}
                 buttonSize='large'
