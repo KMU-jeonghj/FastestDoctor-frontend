@@ -24,7 +24,11 @@ const ResultBox = () => {
   }
 
   if (isLoading) {
-    return <Loading text='결과를 분석하는 중...' />;
+    return (
+      <div className="card">
+        <Loading text='결과를 분석하는 중...' />
+      </div>
+    );
   }
 
   const hasData = !!data;

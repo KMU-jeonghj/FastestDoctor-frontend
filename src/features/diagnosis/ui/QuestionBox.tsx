@@ -12,6 +12,7 @@ import { AnswerRequestType } from 'entities/diagnosis/types/diagnosis.type';
 import { useNavigate } from 'react-router-dom';
 import { useUserStore } from 'entities/user/store/userStore';
 import Empty from 'shared/ui/Empty/Empty';
+import { setTimeout } from 'timers/promises';
 
 const QuestionBox = () => {
 
@@ -22,14 +23,23 @@ const QuestionBox = () => {
 
 
 
-  if (error || !data) {
-    return <Empty>데이터를 불러올 수 없습니다.</Empty>;
+  if (error) {
+    return (
+      <div className="card">
+        <Empty>데이터를 불러올 수 없습니다.</Empty>
+      </div>
+    );
   }
 
-  const { question, options } = data;
+  const { question, options } = data || {};
 
   if (isLoading || isPending) {
-    return <Loading text='AI가 분석하는 중...' />;
+    return (
+      <div className="card">
+        <Loading text='AI가 분석하는 중...' />
+      </div>
+    );
+    
   }
 
   const handleAnswer = (data: AnswerRequestType) => {
@@ -52,25 +62,35 @@ const QuestionBox = () => {
   return (
     <QuestionBoxStyle>
       <div className="card">
-        <div className="question">
-          <Title fontSize='large' fontWeight='semibold'>{question}</Title>
-        </div>
+        {question && (
+          <div className="question">
+            <Title fontSize='large' fontWeight='semibold'>{question}</Title>
+          </div>
+        )}
 
-        <div className="answer-group">
-          {options.map((item, index) => (
-            <Button
-              key={index}
-              buttonSize='large'
-              fontSize='medium'
-              fontWeight='semibold'
-              scheme='answer'
-              onClick={() => handleAnswer({ question, answer: item })}
-            >
-              <AnswerMark />
-              {item}
-            </Button>
-          ))}
-        </div>
+        {options && question ? (
+          <div className="answer-group">
+            {options?.map((item, index) => (
+              <Button
+                key={index}
+                buttonSize='large'
+                fontSize='medium'
+                fontWeight='semibold'
+                scheme='answer'
+                onClick={() => handleAnswer({ question, answer: item })}
+              >
+                <AnswerMark />
+                {item}
+              </Button>
+            ))}
+          </div>
+        ) :
+        (
+          <Empty>데이터를 불러오지 못했습니다.</Empty>
+        )
+        }
+
+        
 
         {/* <div className="prev-button">
           <Button

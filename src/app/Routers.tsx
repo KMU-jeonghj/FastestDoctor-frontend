@@ -6,6 +6,7 @@ import DiagnosisPage from 'pages/diagnosis/DiagnosisPage';
 import ResultPage from 'pages/result/ResultPage';
 import UITestPage from 'pages/test/UITestPage';
 import ProtectedRoute from './ProtectedRoute';
+import ErrorPage from 'pages/ErrorPage/ErrorPage';
 
 export const Routers = () => {
   return (
@@ -19,6 +20,7 @@ export const Routers = () => {
         </Route>
 
         <Route path="/uitest" element={<UITestPage />} />
+        <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>
   );
